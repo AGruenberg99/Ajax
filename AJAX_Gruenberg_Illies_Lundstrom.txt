@@ -1,0 +1,10 @@
+Group Members:
+Austin Gruenberg (Programmer)
+Ryan Illies (Pair Programmer)
+Andrew Lundstrom (Pair Programmer)
+
+Private
+http://puff.mnstate.edu/~hq1597nw/private/module05assign05b/index.php
+
+GitHub
+https://github.com/AGruenberg99/Ajax
