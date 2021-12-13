@@ -55,7 +55,7 @@ function add_to_chat($name,$input_text,$database) {
       echo "Could not execute query! <br />";
       die( mysqli_error() );
    }
-
+    session_start();
 };
 
 function current_chat_text($database) {
@@ -72,8 +72,7 @@ function current_chat_text($database) {
    }
 	while ($row = mysqli_fetch_row($result))
    {
-        echo $row[0].": " .$row[1];
-        echo "<br>";
+        echo "<p>".$row[0].": " .$row[1]."</p>";
    }
 };
 
@@ -82,7 +81,7 @@ function prompt_for_name() {
 	<html>
 	<body>
 	<form>
-	What is your name?
+	<h1>What is your name?</h1>
 	<input type="text" name="name" />
 	<input type="submit" />
 	</form>
@@ -121,19 +120,32 @@ function chat_as($name) {
   });
 });
 </script>
+<script type="text/javascript">
+\$(document).ready(function(){
+    \$setInterval(function() {
+        $.ajax({
+            type: "GET",
+            url: "ajax_refresh.php",
+            success: function(result) {
+                $('body').html($result);
+            }
+        });
+    }, 3000);
+});
+</script>
 	<style>
 	#status , #clearDebug { display: none; }
 	</style>
 </head>
 <body>
 
-<div id="data">Chat Text Here</div>
+<div id="data"><h1>Chat Text Here</h1></div>
 
 <div id="status">Debugging Information Here</div>
 
-<input id="input_text" type="text" onfocus = "this.value = ''" name="input_text" />
+<center><input id="input_text" type="text" onfocus = "this.value = ''" name="input_text" /></center><br>
 
-<button id="chat">Chat</button>
+<center><button id="chat" class = "button" >Chat</button></center>
 
 <button id="clearDebug">Clear Debugging</button>
 
@@ -144,3 +156,39 @@ function chat_as($name) {
 HERE;
 };
 ?>
+<html>
+<style>
+
+h1,h2,h3{
+    color: #443266;
+    text-align: center;
+}
+
+h4{
+    color: #443266;
+    text-align: center;
+    
+}
+
+h5{
+    color: #443266;
+    
+}
+
+p{
+    color: #443266;
+    text-align: center;
+}
+
+body{
+    background-color: #F1F0FF;
+}
+
+.button{
+    background-color: #8C489F;
+    color: white;
+    font-size: 20px;
+    
+}
+</style>
+</html>
